@@ -17,6 +17,7 @@ protocol ChessBoardViewStoreDelegate: class {
     func addPiece(_ piece: PieceViewModel, at squareIndex: SquareIndex)
     func redrawPieces()
     func snapDraggedPieceBack()
+    func blinkSquare(_ square: Square)
 }
 
 final class ChessBoardViewStore {
@@ -201,7 +202,10 @@ fileprivate extension ChessBoardViewStore {
             selectedSquaresIndexes = []
             highlightedSquareIndexes = []
             boardView?.snapDraggedPieceBack()
-            print(error)
+
+            if case ChessBoardError.invalidMove(let reason) = error, case .kingInCheck(let kingSquare) = reason {
+                boardView?.blinkSquare(kingSquare)
+            }
         }
     }
 

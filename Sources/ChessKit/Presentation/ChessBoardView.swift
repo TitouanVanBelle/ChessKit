@@ -118,8 +118,13 @@ public extension ChessBoardView {
 // MARK: ChessBoardViewStoreDelegate
 
 extension ChessBoardView: ChessBoardViewStoreDelegate {
+    func blinkSquare(_ square: Square) {
+        squareView(for: square).blink()
+    }
+
     func redrawPieces() {
-        pieces.values.forEach { $0.removeFromSuperview() }
+        pieces.values
+            .forEach { $0.removeFromSuperview() }
         store.squares
             .forEach(drawPiece)
     }
@@ -259,7 +264,7 @@ fileprivate extension ChessBoardView {
 
 fileprivate extension ChessBoardView {
     @objc func handleSquareTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
-        guard let squareView = gestureRecognizer.view else {
+        guard let squareView = gestureRecognizer.view as? SquareView else {
             return
         }
 
@@ -268,7 +273,7 @@ fileprivate extension ChessBoardView {
     }
 
     @objc func handlePieceTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
-        guard let pieceView = gestureRecognizer.view else {
+        guard let pieceView = gestureRecognizer.view as? PieceView else {
             return
         }
 

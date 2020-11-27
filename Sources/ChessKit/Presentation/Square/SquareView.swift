@@ -5,6 +5,7 @@
 //  Created by Titouan Van Belle on 11.11.20.
 //
 
+import Combine
 import PureLayout
 import UIKit
 
@@ -32,6 +33,8 @@ class SquareView: UIView {
     private lazy var selectedLayer: CALayer = makeSelectedLayer()
     private lazy var highlightedLayer: CALayer = makeHighlightedLayer()
 
+    private var cancellables = Set<AnyCancellable>()
+
     private let viewModel: SquareViewModel
 
     // MARK: Init
@@ -46,6 +49,17 @@ class SquareView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension SquareView {
+    func blink() {
+        Array(repeating: [UIColor.red, backgroundColor!], count: 3)
+            .flatMap { $0 }
+            .publisher
+            .publish(every: 0.3, on: .main, in: .default)
+            .sink { self.backgroundColor = $0 }
+            .store(in: &cancellables)
     }
 }
 
