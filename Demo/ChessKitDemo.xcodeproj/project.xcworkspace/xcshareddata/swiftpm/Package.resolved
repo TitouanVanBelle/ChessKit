@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Chess",
+        "repositoryURL": "https://github.com/TitouanVanBelle/Chess",
+        "state": {
+          "branch": "master",
+          "revision": "28e72bce6285709c02db54520236a1dbd35b634e",
+          "version": null
+        }
+      },
+      {
+        "package": "PureLayout",
+        "repositoryURL": "https://github.com/PureLayout/PureLayout",
+        "state": {
+          "branch": null,
+          "revision": "d19b40e831e4d621097765998be97df3856e8413",
+          "version": "3.1.6"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
