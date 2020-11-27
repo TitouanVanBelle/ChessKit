@@ -133,13 +133,14 @@ extension ChessBoardViewStore {
         if let moveStartSquare = moveStartSquare {
             if moveStartSquare.location.index == square.location.index {
                 selectedSquaresIndexes.remove(moveStartSquare.location.index)
+                highlightedSquareIndexes = []
                 self.moveStartSquare = nil
                 boardView?.snapDraggedPieceBack()
             } else {
-                let potentialDestinations = board.legalSquares(forPieceAt: moveStartSquare)
+                let legalSquares = board.legalSquares(forPieceAt: moveStartSquare)
                     .map(\.location.index)
 
-                if potentialDestinations.contains(square.location.index) {
+                if legalSquares.contains(square.location.index) {
                     selectedSquaresIndexes = []
                     playMove(from: moveStartSquare, to: square)
                 } else {
