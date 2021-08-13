@@ -8,6 +8,6 @@
 import Foundation
 import Chess
 
-public protocol ChessBoardViewDelegate: class {
+public protocol ChessBoardViewDelegate: AnyObject {
     func boardViewDidPlayMove(_ move: Move)
 }

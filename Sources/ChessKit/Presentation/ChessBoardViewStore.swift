@@ -11,7 +11,7 @@ import Chess
 
 typealias SquareIndex = Int
 
-protocol ChessBoardViewStoreDelegate: class {
+protocol ChessBoardViewStoreDelegate: AnyObject {
     func movePiece(from fromIndex: SquareIndex, to toIndex: SquareIndex)
     func removePiece(at squareIndex: SquareIndex)
     func addPiece(_ piece: PieceViewModel, at squareIndex: SquareIndex)
