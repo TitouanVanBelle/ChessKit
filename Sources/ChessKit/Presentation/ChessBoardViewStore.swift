@@ -71,7 +71,7 @@ extension ChessBoardViewStore {
             to: move.fromSquare.location.index
         )
 
-        if let capturedPiece = move.capturedPiece {
+        if let capturedPiece = move.capturedSquare?.piece {
             let piece = PieceViewModel(piece: capturedPiece)
             boardView?.addPiece(piece, at: move.toSquare.location.index)
         }
@@ -221,11 +221,14 @@ fileprivate extension ChessBoardViewStore {
             boardView?.movePiece(from: fromIndex, to: toIndex)
 
         case .capture:
-            boardView?.removePiece(at: toIndex)
+            let capturedIndex = move.capturedSquare!.location.index
+            boardView?.removePiece(at: capturedIndex)
             boardView?.movePiece(from: fromIndex, to: toIndex)
 
         case .enPassant:
-            return
+            let capturedIndex = move.capturedSquare!.location.index
+            boardView?.removePiece(at: capturedIndex)
+            boardView?.movePiece(from: fromIndex, to: toIndex)
 
         case .castle(let side):
             let kingFromIndex = kingInitialIndex(for: move.player)

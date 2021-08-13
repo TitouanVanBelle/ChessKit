@@ -15,7 +15,7 @@ let package = Package(
             targets: ["ChessKit"]),
     ],
     dependencies: [
-        .package(name: "Chess", url: "https://github.com/TitouanVanBelle/Chess", .branch("master")),
+        .package(name: "Chess", url: "https://github.com/TitouanVanBelle/Chess", .branch("main")),
         .package(url: "https://github.com/PureLayout/PureLayout", .upToNextMajor(from: "3.1.6"))
 
     ],

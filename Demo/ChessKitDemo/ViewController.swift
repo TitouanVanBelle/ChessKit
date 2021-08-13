@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     private lazy var unloadPreviousButton: UIButton = makeUnloadPreviousButton()
     private lazy var loadAllButton: UIButton = makeLoadAllButton()
     private lazy var unloadAllButton: UIButton = makeUnloadAllButton()
+    private lazy var resetPiecesButton: UIButton = makeResetPiecesButton()
     private lazy var controlsStack: UIStackView = makeControlsStack()
 
     // MARK: Life Cycle
@@ -74,7 +75,8 @@ fileprivate extension ViewController {
             unloadAllButton,
             unloadPreviousButton,
             loadNextButton,
-            loadAllButton
+            loadAllButton,
+            resetPiecesButton
         ])
 
         stack.distribution = .fillEqually
@@ -109,6 +111,13 @@ fileprivate extension ViewController {
         button.addTarget(self, action: #selector(unloadAll), for: .touchUpInside)
         return button
     }
+
+    func makeResetPiecesButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle("Redraw Pieces", for: .normal)
+        button.addTarget(self, action: #selector(redrawPieces), for: .touchUpInside)
+        return button
+    }
 }
 
 // MARK: Actions
@@ -128,6 +137,10 @@ fileprivate extension ViewController {
 
     @objc func unloadAll() {
         boardView.unloadAllMoves()
+    }
+
+    @objc func redrawPieces() {
+        boardView.redrawPieces()
     }
 }
 

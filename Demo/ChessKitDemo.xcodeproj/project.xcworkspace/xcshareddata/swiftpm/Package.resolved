@@ -5,8 +5,8 @@
         "package": "Chess",
         "repositoryURL": "https://github.com/TitouanVanBelle/Chess",
         "state": {
-          "branch": "master",
-          "revision": "62e66e0f00ec185a0e0a6814afd47a0b70e1dfdb",
+          "branch": "main",
+          "revision": "f558d136a769d1a2c2cd9199a30e9fd87682fe99",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/PureLayout/PureLayout",
         "state": {
           "branch": null,
-          "revision": "d19b40e831e4d621097765998be97df3856e8413",
-          "version": "3.1.6"
+          "revision": "5561683c96dc49b023c1299bfe4f6fbeed5f8199",
+          "version": "3.1.9"
         }
       }
     ]

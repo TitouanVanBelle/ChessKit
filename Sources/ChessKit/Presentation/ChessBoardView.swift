@@ -113,6 +113,11 @@ public extension ChessBoardView {
     func unloadAllMoves() {
         store.unloadAllMoves()
     }
+
+    func redrawPieces() {
+        clearPieces()
+        drawPieces()
+    }
 }
 
 // MARK: ChessBoardViewStoreDelegate
@@ -120,13 +125,6 @@ public extension ChessBoardView {
 extension ChessBoardView: ChessBoardViewStoreDelegate {
     func blinkSquare(_ square: Square) {
         squareView(for: square).blink()
-    }
-
-    func redrawPieces() {
-        pieces.values
-            .forEach { $0.removeFromSuperview() }
-        store.squares
-            .forEach(drawPiece)
     }
 
     func movePiece(from fromIndex: SquareIndex, to toIndex: SquareIndex) {
@@ -210,12 +208,23 @@ fileprivate extension ChessBoardView {
     }
 
     func draw() {
+        drawSquares()
+        drawPieces()
+    }
+
+    func drawSquares() {
         store.squares
             .forEach(drawSquare)
+    }
 
+    func clearPieces() {
+        pieces.values
+            .forEach { $0.removeFromSuperview() }
+    }
+
+    func drawPieces() {
         store.squares
             .forEach(drawPiece)
-
     }
 
     func drawSquare(square: SquareViewModel) {
@@ -230,6 +239,10 @@ fileprivate extension ChessBoardView {
         addSubview(squareView)
 
         squares.insert(squareView, at: index)
+    }
+
+    func clearPiece(at square: SquareViewModel) {
+        removePiece(at: square.index)
     }
 
     func drawPiece(at square: SquareViewModel) {
@@ -341,8 +354,6 @@ fileprivate extension ChessBoardView {
 }
 
 extension ChessBoardView {
-
-
     func snapDraggedPiece(to square: Square) {
         let index = square.location.index
         draggedPiece?.frame = squareFrames[index]
