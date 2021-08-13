@@ -132,7 +132,9 @@ extension ChessBoardView: ChessBoardViewStoreDelegate {
             return
         }
 
-        piece.frame = squareFrames[toIndex]
+        UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut) {
+            piece.frame = self.squareFrames[toIndex]
+        } completion: { _ in }
 
         pieces[fromIndex] = nil
         pieces[toIndex] = piece
