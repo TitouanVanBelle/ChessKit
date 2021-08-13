@@ -9,6 +9,15 @@ import UIKit
 
 class PieceView: UIImageView {
 
+    static let draggingScaleFactor: CGFloat = 1.6
+
+    static let draggingTransform: CGAffineTransform = {
+        CGAffineTransform(
+            scaleX: draggingScaleFactor,
+            y: draggingScaleFactor
+        ).concatenating(CGAffineTransform(translationX: 0, y: -25))
+    }()
+
     // MARK: Public Properties
 
     var isDragging: Bool = false {
@@ -43,7 +52,7 @@ fileprivate extension PieceView {
     }
 
     func updateIsDragging() {
-        transform = isDragging ? CGAffineTransform(scaleX: 1.1, y: 1.1) : .identity
+        transform = isDragging ? PieceView.draggingTransform : .identity
     }
 }
 
