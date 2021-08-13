@@ -14,8 +14,8 @@ class SquareView: UIView {
     // MARK: Constants
 
     enum Constants {
-        static let lightSquareColor: UIColor = #colorLiteral(red: 0.8078431373, green: 0.7529411765, blue: 0.631372549, alpha: 1)
-        static let darkSquareColor: UIColor = #colorLiteral(red: 0.6666666667, green: 0.5764705882, blue: 0.4823529412, alpha: 1)
+        static let lightSquareColor: UIColor = #colorLiteral(red: 0.8941176471, green: 0.9058823529, blue: 0.8, alpha: 1)
+        static let darkSquareColor: UIColor = #colorLiteral(red: 0.4392156863, green: 0.568627451, blue: 0.3176470588, alpha: 1)
     }
 
     // MARK: Public Properties
@@ -42,6 +42,7 @@ class SquareView: UIView {
     init(viewModel: SquareViewModel) {
         self.viewModel = viewModel
     
+        
         super.init(frame: .zero)
 
         setupUI()
